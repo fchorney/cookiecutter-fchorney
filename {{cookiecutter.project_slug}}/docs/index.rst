@@ -16,10 +16,3 @@
    :name: sec-code-ref
 
    autoapi/{{cookiecutter.project_slug}}/index
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Code Coverage
-   :name: sec-code-coverage
-
-   Coverage <./coverage/index.html#http://>
