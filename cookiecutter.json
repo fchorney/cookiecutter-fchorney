@@ -1,0 +1,15 @@
+{
+    "full_name": "Fernando Chorney",
+    "email": "github@djsbx.com",
+    "project_name": "New Project",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+    "project_short_description": "A short description of the project",
+    "release_date": "{% now 'local', '%B %d, %Y' %}",
+    "version": "0.1.0",
+    "is_executable": ["no", "yes"],
+    "_nbsp": " ",
+    "_copy_without_render": [
+      "docs/autoapi_templates/python/*.rst_t"
+    ],
+    "_extensions": ["jinja2_time.TimeExtension"]
+}
