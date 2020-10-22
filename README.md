@@ -1,4 +1,6 @@
 # cookiecutter-fchorney
+[![Build Status](https://github.com/fchorney/cookiecutter-fchorney/workflows/build/badge.svg)](https://github.com/fchorney/cookiecutter-fchorney/actions?query=workflow:build)
+
 
 CookieCutter template for my personal python projects
 
