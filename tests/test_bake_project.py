@@ -23,7 +23,7 @@ def test_project_tree(cookies):
     result = cookies.bake(extra_context={"project_slug": "test_project"})
     assert result.exit_code == 0
     assert result.exception is None
-    assert result.project.basename == "test_project"
+    assert result.project_path.name == "test_project"
 
 
 def test_run_tests(cookies):
@@ -31,5 +31,5 @@ def test_run_tests(cookies):
     tox_command = f"py{py_version.major}{py_version.minor}"
 
     result = cookies.bake(extra_context={"project_slug": "test_project_tests"})
-    with inside_dir(str(result.project)):
+    with inside_dir(str(result.project_path)):
         subprocess.check_output(shlex.split(f"python -m tox -e {tox_command}"))

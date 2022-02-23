@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from recommonmark.parser import CommonMarkParser
 from recommonmark.transform import AutoStructify
 from {{cookiecutter.project_slug}} import __version__
@@ -32,7 +34,7 @@ master_doc = "index"
 
 # Project settings
 project = "{{cookiecutter.project_name}}"
-year = {{cookiecutter._year}}
+year = datetime.now().year
 author = "{{cookiecutter.full_name}}"
 copyright = f"{year}, {author}"
 

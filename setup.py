@@ -1,7 +1,7 @@
 from setuptools import setup
 
 
-TEST_DEPS = ["pytest", "pytest-cookies", "flake8"]
+TEST_DEPS = ["pytest", "pytest-cookies", "flake8", "tox"]
 CHECK_DEPS = [
     "isort[colors]",
     "black",

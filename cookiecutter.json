@@ -8,7 +8,6 @@
     "version": "0.1.0",
     "is_executable": ["no", "yes"],
     "_nbsp": " ",
-    "_year": "{% now 'utc', '%Y' %}",
     "_copy_without_render": [
       "docs/autoapi_templates/python/*.rst_t"
     ],
