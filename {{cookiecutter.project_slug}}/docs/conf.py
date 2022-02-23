@@ -1,5 +1,13 @@
+from recommonmark.parser import CommonMarkParser
 from recommonmark.transform import AutoStructify
 from {{cookiecutter.project_slug}} import __version__
+
+
+# This exists to fix a bug in recommonmark due to a missing function definition
+# https://github.com/readthedocs/recommonmark/issues/177
+class CustomCommonMarkParser(CommonMarkParser):
+    def visit_document(self, node):
+        pass
 
 
 # Sphinx Base --------------------------------------------------------------------------
@@ -14,9 +22,7 @@ extensions = [
     # http://www.sphinx-doc.org/en/master/usage/extensions/viewcode.html
     "sphinx.ext.viewcode",
     # https://sphinx-autoapi.readthedocs.io/en/latest/
-    "autoapi.extension",
-    # https://github.com/rtfd/recommonmark
-    "recommonmark",{% if cookiecutter.is_executable == "yes" %}
+    "autoapi.extension",{% if cookiecutter.is_executable == "yes" %}
     # https://github.com/invenia/sphinxcontrib-runcmd
     "sphinxcontrib.runcmd",{%- endif %}
 ]
@@ -26,7 +32,7 @@ master_doc = "index"
 
 # Project settings
 project = "{{cookiecutter.project_name}}"
-year = "{{cookiecutter.release_date.split(',')[-1].strip()}}"
+year = {{cookiecutter._year}}
 author = "{{cookiecutter.full_name}}"
 copyright = f"{year}, {author}"
 
@@ -65,9 +71,8 @@ napoleon_use_param = False
 # Sphinx Extension AutoAPI -------------------------------------------------------------
 autoapi_type = "python"
 autoapi_dirs = ["../{{cookiecutter.project_slug}}/"]
-autoapi_template_dir = "docs/autoapi_templates"
+autoapi_template_dir = "./autoapi_templates"
 autoapi_root = "autoapi"
-autoapi_ignore = ["*/{{cookiecutter.project_slug}}/version.py"]
 autoapi_add_toctree_entry = False
 autoapi_keep_files = False
 
@@ -81,6 +86,9 @@ def setup(app):
     # Set source filetype(s)
     # Allow .rst files along with .md
     app.add_source_suffix(".rst", "restructuredtext")
+    app.add_source_suffix(".md", "markdown")
+    app.add_source_parser(CustomCommonMarkParser)
+
 
     # RecommonMark Settings ------------------------------------------------------------
     # Enable the evaluation of rst directive in .md files

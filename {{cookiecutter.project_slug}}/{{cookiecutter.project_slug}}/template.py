@@ -1,9 +1,6 @@
 {% if cookiecutter.is_executable == "yes" %}import argparse
 from typing import Optional, Sequence
-{% endif -%}import logging
-
-
-logger = logging.getLogger(__name__)
+{% endif -%}from loguru import logger
 
 
 def function_test(x: int) -> int:
@@ -26,8 +23,6 @@ def function_test(x: int) -> int:
 
 def main(args: Optional[Sequence[str]] = None):
     pargs = parse_args(args=args)
-
-    logging.basicConfig(level=pargs.log_level)
 
 
 def parse_args(args: Optional[Sequence[str]] = None) -> argparse.Namespace:
