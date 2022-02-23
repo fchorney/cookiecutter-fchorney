@@ -1,5 +1,7 @@
 import os
+import shlex
 import subprocess
+import sys
 from contextlib import contextmanager
 
 
@@ -24,7 +26,10 @@ def test_project_tree(cookies):
     assert result.project.basename == "test_project"
 
 
-def test_run_flake8(cookies):
-    result = cookies.bake(extra_context={"project_slug": "flake8_compat"})
+def test_run_tests(cookies):
+    py_version = sys.version_info
+    tox_command = f"py{py_version.major}{py_version.minor}"
+
+    result = cookies.bake(extra_context={"project_slug": "test_project_tests"})
     with inside_dir(str(result.project)):
-        subprocess.check_call(["flake8"])
+        subprocess.check_output(shlex.split(f"python -m tox -e {tox_command}"))

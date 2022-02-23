@@ -2,7 +2,14 @@ from setuptools import setup
 
 
 TEST_DEPS = ["pytest", "pytest-cookies", "flake8"]
-CHECK_DEPS = ["isort", "black", "flake8", "flake8-quotes", "pep8-naming", "mypy"]
+CHECK_DEPS = [
+    "isort[colors]",
+    "black",
+    "flake8",
+    "flake8-quotes",
+    "pep8-naming",
+    "mypy",
+]
 REQUIREMENTS = ["cookiecutter", "jinja2-time"]
 
 EXTRAS = {"test": TEST_DEPS, "check": CHECK_DEPS, "dev": TEST_DEPS + CHECK_DEPS}

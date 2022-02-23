@@ -24,15 +24,15 @@ def main():
         err = err.decode(encoding, "replace").rstrip()
 
     if out and out != "":
-        print("init.sh stdout: {}".format(out))
+        print(f"init.sh stdout: {out}")
     if err and err != "":
-        print("init.sh stderr: {}".format(err))
+        print(f"init.sh stderr: {err}")
 
     try:
         os.remove(git_script)
         pass
     except Exception:
-        print("Removing {} Failed".format(git_script))
+        print(f"Removing {git_script} Failed")
 
 
 if __name__ == "__main__":
