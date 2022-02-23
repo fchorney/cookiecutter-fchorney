@@ -1,6 +1,5 @@
 import codecs
 from os.path import abspath, dirname, join
-from typing import List
 
 from setuptools import find_packages, setup
 
@@ -8,8 +7,8 @@ from setuptools import find_packages, setup
 TEST_DEPS = ["coverage[toml]", "pytest", "pytest-cov"]
 DOCS_DEPS = ["sphinx", "sphinx-rtd-theme", "sphinx-autoapi", "recommonmark"
 {%- if cookiecutter.is_executable == "yes" %}, "sphinxcontrib-runcmd"]{% else -%}]{% endif %}
-CHECK_DEPS = ["isort", "flake8", "flake8-quotes", "pep8-naming", "mypy", "black"]
-REQUIREMENTS: List[str] = []
+CHECK_DEPS = ["isort[colors]", "flake8", "flake8-quotes", "pep8-naming", "mypy", "black"]
+REQUIREMENTS = ["loguru"]
 
 EXTRAS = {
     "test": TEST_DEPS,
@@ -40,7 +39,6 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
     ],
     platforms=["any"],
